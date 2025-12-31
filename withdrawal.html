@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isplata - ACC INVESTICIJA</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 35px;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      background-color: #001d3d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00ff88;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      text-align: center;
+    }
+    button {
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #d4af37;
+      color: #000;
+    }
+
+    /* Popup modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      background-color: #001d3d;
+      margin: 15% auto;
+      padding: 20px;
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 350px;
+      color: #d4af37;
+      box-shadow: 0 0 15px #00ff88;
+    }
+    .close-btn {
+      background-color: #d4af37;
+      color: #000;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .close-btn:hover {
+      background-color: #00ff88;
+      color: #000;
+    }
+  </style>
+  <script>
+    // Auto language detection for Croatia
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.country_code === "HR") {
+            document.querySelector("h1").innerText = "Isplata - ACC INVESTICIJA";
+            document.getElementById("accnum").placeholder = "Broj računa / Novčanik";
+            document.getElementById("accname").value = "Dušan Lukić";
+            document.getElementById("amount").value = "20,000 €";
+            document.getElementById("withdrawBtn").innerText = "Isplati";
+            document.getElementById("backBtn").innerText = "Natrag";
+          }
+        })
+        .catch(() => {});
+    });
+
+    // Show styled popup modal
+    function showFee() {
+      document.getElementById("feeModal").style.display = "block";
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById("feeModal").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+  <h1>Isplata - ACC INVESTICIJA</h1>
+
+  <form onsubmit="event.preventDefault(); showFee();">
+    <input type="text" id="accnum" value="Trust Wallet" readonly><br>
+    <input type="text" id="accname" value="Dušan Lukić" readonly><br>
+    <select id="bank" required>
+      <option value="">Odaberi banku</option>
+      <option>Trust Wallet</option>
+    </select><br>
+    <input type="text" id="amount" value="20,000 €" readonly><br>
+    <button type="submit" id="withdrawBtn">Isplati</button>
+    <button type="button" id="backBtn" onclick="window.location.href='index.html'">Natrag</button>
+  </form>
+
+  <!-- Styled Popup Modal -->
+  <div id="feeModal" class="modal">
+    <div class="modal-content">
+      <h3>Za isplatu je potrebna naknada od 200 €.</h3>
+      <button class="close-btn" onclick="closeModal()">Zatvori</button>
+    </div>
+  </div>
+</body>
+</html>
