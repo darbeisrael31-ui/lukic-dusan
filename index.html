@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACC INVESTICIJA</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 32px;
+      color: #d4af37;
+      margin: 10px 0;
+    }
+    .profit {
+      font-size: 28px;
+      color: #00ff88;
+      margin-bottom: 40px;
+    }
+    button {
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #d4af37;
+      color: #000;
+    }
+  </style>
+  <script>
+    // Auto language detection (Croatian for Croatia)
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.country_code === "HR") {
+            document.querySelector("h1").innerText = "ACC INVESTICIJA";
+            document.querySelector("h2").innerText = "DUŠAN LUKIĆ";
+            document.querySelector(".profit").innerText = "Dobit: 20,000 €";
+            document.querySelector("button").innerText = "Idi na isplatu";
+          }
+        })
+        .catch(() => {});
+    });
+  </script>
+</head>
+<body>
+  <h1>ACC INVESTMENT</h1>
+  <h2>DUŠAN LUKIĆ</h2>
+  <div class="profit">Dobit: 20,000 €</div>
+  <button onclick="window.location.href='withdrawal.html'">Idi na isplatu</button>
+</body>
+</html>
